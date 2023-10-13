@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if & v-else</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!--
+  Simule a adição de um produto no carrinho
+  este produto possui estoque de 7 itens
+  (utilize a mesma ideia do contador).
+
+  Ao atingir 7 itens mostre uma mensagem informando
+  não ser possível adicinar mais do que 7 itens.
+
+  Remova também o botão de adicionar itens.
+-->
+
+
+    <div id="app">
+        <p>Produto: {{estoqueProduto}}</p>
+        <p>Carrinho: {{carrinho}}</p>
+        <button v-show="estoqueProduto" @click="adicionarProduto">adicionar</button>
+        <button v-show="carrinho" @click="removerProduto">remover</button>
+        <p v-show="estoqueProduto === 0">Não temos mais este produto em estoque</p>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                estoqueProduto: 7,
+                carrinho: 0
+            },
+            methods: {
+                adicionarProduto(){
+                    this.carrinho++
+                    this.estoqueProduto--
+                },
+                removerProduto(){
+                    this.carrinho--
+                    this.estoqueProduto++
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
